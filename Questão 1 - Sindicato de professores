@@ -1,1 +1,111 @@
+import java.util.ArrayList;
+import java.util.Scanner;
 
+public class exercicio1 {
+
+    public static class Professor {
+        private String cpf;
+        private String titulacao;
+        private double salario;
+
+        public Professor(double salario, String cpf, String titulacao) {
+            this.salario = salario;
+            this.cpf = cpf;
+            this.titulacao = titulacao;
+
+        }
+
+        public String getTitulacao() {
+            return titulacao;
+        }
+
+        public double calculoArrecadacao() {
+            double percentual;
+            switch (titulacao) {
+                
+                case "Especialista":
+                percentual = 0.012;
+                break;
+                
+                case "Doutor":
+                percentual = 0.016;
+                break;
+
+                case "Mestre":
+                percentual = 0.014;
+                break;
+
+                default:
+                percentual = 0.0;
+                break;
+            }
+            return salario * percentual;
+        }
+
+        public boolean isMestre() {
+            return titulacao.equalsIgnoreCase("Mestre");
+        }
+    }
+
+    public static class arrecadacaoTotal {
+        private ArrayList<Professor> professores = new ArrayList<>();
+
+
+    public void addProfessor(Professor professor) {
+            professores.add(professor);
+        }
+
+    public double calcularTotalArrecadado() {
+        double total = 0;
+        for (Professor p : professores) {
+            total += p.calculoArrecadacao();
+            }
+            return total;
+        }
+
+    public int totalMestres() {
+        int contador = 0;
+        for (Professor p : professores) {
+                if (p.isMestre()) {
+                    contador++;
+                }
+            }
+            return contador;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        arrecadacaoTotal sistema = new arrecadacaoTotal ();
+
+        while (true) {
+            System.out.println("Digite o salario:");
+            double salario = scanner.nextDouble();
+
+            System.out.println("Digite o cpf:");
+            String cpf = scanner.nextLine();
+
+            System.out.println("Digite a titulacao:");
+            String titulacao = scanner.nextLine();
+            scanner.nextLine(); 
+
+            Professor professor = new Professor(salario, cpf, titulacao);
+            sistema.addProfessor(professor);
+
+            System.out.println("Deseja adicionar outro professor? (sim/não)");
+
+            String resposta = scanner.nextLine();
+            if (!resposta.equalsIgnoreCase("sim")) {
+                break;
+            }
+        }
+    
+        double totalArrecadado = sistema.calcularTotalArrecadado();
+        int quantidadeMestres = sistema.totalMestres();
+
+        System.out.printf("Total de arrecadacoes: R$ %.2f%n", totalArrecadado);
+        System.out.println("Quantidade total de Mestres: " + quantidadeMestres);
+
+        scanner.close();
+    }
+}

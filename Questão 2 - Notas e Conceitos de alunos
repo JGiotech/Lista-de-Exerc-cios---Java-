@@ -1,1 +1,47 @@
 
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class ConceitosAlunos {
+
+   private String matricula;
+   private double nota;
+
+   public String getMatricula() {
+        return matricula;
+    }
+
+    public String setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public double getNota() {
+        return nota;
+    }
+
+    public double setNota(double nota) {
+      this.nota = nota;
+    }
+
+    public String getConceito() {
+
+       if(nota <= 4.9){
+           return "D";
+    } else if (nota <= 6.9) {
+        return "C";
+    } else if (nota <= 8.9) {
+        return "B";
+    } else if (nota <= 10.0) {
+        return "A";
+    } else {
+        return "Nota inválida";
+    }
+}
+
+    public void exibirDados() {
+        System.out.println("Matrícula: " + matricula);
+        System.out.println("Nota: " + nota);
+        System.out.println("Conceito de classificação: " + getConceito());
+    }
+
+}

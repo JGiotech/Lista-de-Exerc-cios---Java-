@@ -45,3 +45,43 @@ public class ConceitosAlunos {
     }
 
 }
+
+import java.util.Scanner;
+
+public class MainConceitosAlunos {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.println("Quantos alunos deseja cadastrar?");
+        int quantidadeAlunos = scanner.nextInt();
+
+
+        ConceitosAlunos[] alunos = new ConceitosAlunos[quantidadeAlunos];
+
+
+        for (int i = 0; i < quantidadeAlunos; i++) {
+            alunos[i] = new ConceitosAlunos();
+
+
+            System.out.println("Digite a matrícula do aluno " + (i + 1) + ": ");
+            String matricula = scanner.next();
+            alunos[i].setMatricula(matricula);
+
+
+            System.out.println("Digite a nota do aluno " + (i + 1) + ": ");
+            double nota = scanner.nextDouble();
+            alunos[i].setNota(nota);
+        }
+
+
+        System.out.println("\nDados dos alunos cadastrados:");
+        for (int i = 0; i < quantidadeAlunos; i++) {
+            alunos[i].exibirDados();
+            System.out.println();
+        }
+
+        scanner.close();
+    }
+}

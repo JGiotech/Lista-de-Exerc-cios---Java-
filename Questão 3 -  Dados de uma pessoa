@@ -1,1 +1,63 @@
+package com.mycompany.listagrupo.main;
 
+import java.time.LocalDate;
+import java.time.Period;
+
+public class Pessoa {
+    private String nome;
+    private LocalDate dataNasc;
+    private double altura;
+    
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    public void setDataNasc(LocalDate dataNasc) {
+        this.dataNasc = dataNasc;
+    }
+    
+    public void setAltura(double altura) {
+        this.altura = altura;
+    }
+    
+    public String getNome() {
+        return this.nome;
+    }
+    
+    public LocalDate getDataNasc() {
+        return this.dataNasc;
+    }
+    
+    public double getAltura() {
+        return this.altura;
+    }
+    
+    private int calcularIdade() {
+        if (this.dataNasc == null) {
+            System.out.println("ERRO: Data de nascimento nula.");
+            return 0;
+        } 
+        LocalDate hoje = LocalDate.now();
+        return Period.between(this.dataNasc, hoje).getYears();
+    }
+    
+    public void imprimirDados() {
+        System.out.println("Nome: " + this.nome);
+        System.out.println("Data de nascimento: " + this.dataNasc);
+        System.out.println("Altura: " + this.altura + " metros");
+        int idade = calcularIdade();
+        System.out.println("Idade: " + idade + " anos");
+    }
+
+    public static void main(String[] args) {
+        Pessoa pessoa1 = new Pessoa();  
+        
+        pessoa1.setNome("Sabrina");
+        pessoa1.setDataNasc(LocalDate.of(2003, 4, 20)); 
+        pessoa1.setAltura(1.62);
+        
+        pessoa1.imprimirDados();
+
+    }
+}
+--

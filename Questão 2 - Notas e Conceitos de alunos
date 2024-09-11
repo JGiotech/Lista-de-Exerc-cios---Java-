@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -13,6 +12,7 @@ public class ConceitosAlunos {
 
     public String setMatricula(String matricula) {
         this.matricula = matricula;
+        return matricula;
     }
 
     public double getNota() {
@@ -21,6 +21,7 @@ public class ConceitosAlunos {
 
     public double setNota(double nota) {
       this.nota = nota;
+        return nota;
     }
 
     public String getConceito() {
@@ -44,11 +45,8 @@ public class ConceitosAlunos {
         System.out.println("Conceito de classificação: " + getConceito());
     }
 
-}
 
-import java.util.Scanner;
-
-public class MainConceitosAlunos {
+public static class MainConceitosAlunos {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -83,5 +81,6 @@ public class MainConceitosAlunos {
         }
 
         scanner.close();
-    }
+     }
+   }
 }
